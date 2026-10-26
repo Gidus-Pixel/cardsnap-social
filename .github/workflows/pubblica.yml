@@ -1,8 +1,14 @@
 # Pubblica su Instagram un post del ramo "anteprime" (pubblica.py).
-# Parte solo a mano, dopo l'ok di Gigi. Serve il segreto IG_TOKEN.
+# - alle 18:30 di Roma (17:30 UTC; d'estate le 19:30) dal lunedi' al venerdi':
+#   pubblica il post di oggi SOLO se Gigi lo ha approvato (file approvato.json
+#   nella sua cartella, scritto da Claude dopo l'ok in chat);
+# - a mano: pubblica subito la cartella indicata (lanciarlo a mano vale come ok).
+# Serve il segreto IG_TOKEN (token dell'account Instagram, lo inserisce Gigi).
 name: Pubblica su Instagram
 
 on:
+  schedule:
+    - cron: '30 17 * * 1-5'
   workflow_dispatch:
     inputs:
       cartella:
@@ -32,16 +38,27 @@ jobs:
         id: c
         env:
           CARTELLA: ${{ inputs.cartella }}
+          EVENTO: ${{ github.event_name }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
         run: |
           cd anteprime
-          if [ -z "$CARTELLA" ]; then
-            CARTELLA=$(ls -d "$(TZ=Europe/Rome date +%F)"-*/ 2>/dev/null | grep -v PROVA | head -1 | tr -d /)
+          OGGI=$(TZ=Europe/Rome date +%F)
+          if [ "$EVENTO" = "schedule" ]; then
+            if [ -z "$IG_TOKEN" ]; then echo "::warning::IG_TOKEN non ancora inserito: niente pubblicazione"; exit 0; fi
+            for d in "$OGGI"-*/; do
+              d=${d%/}
+              [ -f "$d/approvato.json" ] && [ ! -f "$d/pubblicato.json" ] && CARTELLA=$d && break
+            done
+            if [ -z "$CARTELLA" ]; then echo "Nessun post approvato da pubblicare oggi"; exit 0; fi
+          elif [ -z "$CARTELLA" ]; then
+            CARTELLA=$(ls -d "$OGGI"-*/ 2>/dev/null | grep -v PROVA | head -1 | tr -d /)
           fi
           if [ -z "$CARTELLA" ] || [ ! -d "$CARTELLA" ]; then
             echo "::error::Nessun post da pubblicare (${CARTELLA:-oggi})"; exit 1
           fi
           echo "cartella=$CARTELLA" >> "$GITHUB_OUTPUT"
       - name: Pubblica
+        if: steps.c.outputs.cartella != ''
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
         run: python3 codice/pubblica.py "anteprime/${{ steps.c.outputs.cartella }}"
