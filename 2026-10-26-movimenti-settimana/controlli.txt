@@ -1,1 +1,41 @@
-Psyduck 039/217: trend 35.02 oltre 3 volte la media 30 gg (7.5)
+Fraxure 146/86: immagine non italiana (images.pokemontcg.io)
+ESCLUSA Oddish di Erika 001/217: trend 2.74 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa; trend 2.74 oltre 3 volte la media 30 gg (0.33)
+ESCLUSA Pikachu-ex 057/217: trend 4.36 ma su CardTrader da 0.7: possibile carta sbagliata, esclusa
+ESCLUSA Fezandipiti-ex 142/217: trend 4.43 ma su CardTrader da 0.19: possibile carta sbagliata, esclusa
+ESCLUSA Dustox 220/217: trend 2.79 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Marill 232/217: trend 6.36 ma su CardTrader da 0.84: possibile carta sbagliata, esclusa
+ESCLUSA Hitmontop 240/217: trend 3.56 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Mega Hawlucha-ex 268/217: trend 3.64 ma su CardTrader da 0.49: possibile carta sbagliata, esclusa
+ESCLUSA Delphox 013/86: trend 46.04 ma su CardTrader da 0.37: possibile carta sbagliata, esclusa
+ESCLUSA Keldeo 019/86: trend 41.62 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Meganium 010/132: trend 10.23 ma su CardTrader da 0.19: possibile carta sbagliata, esclusa
+ESCLUSA Xerneas 064/132: trend 24.42 ma su CardTrader da 0.14: possibile carta sbagliata, esclusa
+ESCLUSA Hariyama 073/132: trend 3.64 ma su CardTrader da 0.77: possibile carta sbagliata, esclusa
+ESCLUSA Yveltal 088/132: trend 31.71 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Yveltal 088/132: trend 34.76 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Litleo 139/132: trend 3.59 ma su CardTrader da 0.86: possibile carta sbagliata, esclusa
+ESCLUSA Spearow 151/132: trend 5.31 ma su CardTrader da 1.04: possibile carta sbagliata, esclusa
+ESCLUSA Stufful 154/132: trend 4.08 ma su CardTrader da 0.95: possibile carta sbagliata, esclusa
+ESCLUSA Luxray 028/88: trend 44.27 ma su CardTrader da 0.8: possibile carta sbagliata, esclusa
+ESCLUSA Mega Charizard X-ex 013/94: trend 2.97 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Moltres 014/94: trend 14.66 ma su CardTrader da 1.1: possibile carta sbagliata, esclusa
+ESCLUSA Suicune 026/94: trend 50.22 ma su CardTrader da 3.96: possibile carta sbagliata, esclusa
+ESCLUSA Flygon 053/94: trend 2.77 ma su CardTrader da 0.33: possibile carta sbagliata, esclusa
+ESCLUSA Dewgong 097/94: trend 3.83 ma su CardTrader da 0.74: possibile carta sbagliata, esclusa
+ESCLUSA Wigglytuff 105/94: trend 4.32 ma su CardTrader da 0.99: possibile carta sbagliata, esclusa
+ESCLUSA Lucinda 118/94: trend 4.09 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Spiritomb 035/84: trend 11.86 ma su CardTrader da 1.09: possibile carta sbagliata, esclusa
+ESCLUSA Seismitoad 105/86: trend 432.43 ma su CardTrader da 102.64: possibile carta sbagliata, esclusa
+ESCLUSA Tirtouga 106/86: trend 19.62 ma su CardTrader da 4.52: possibile carta sbagliata, esclusa
+ESCLUSA Throh 128/86: trend 5.84 ma su CardTrader da 1.23: possibile carta sbagliata, esclusa
+ESCLUSA Dwebble 129/86: trend 48.28 ma su CardTrader da 10.15: possibile carta sbagliata, esclusa
+ESCLUSA Pawniard 142/86: trend 7.52 ma su CardTrader da 1.22: possibile carta sbagliata, esclusa
+ESCLUSA Pidove 148/86: trend 21.46 ma su CardTrader da 4.72: possibile carta sbagliata, esclusa
+ESCLUSA Cinccino 153/86: trend 14.81 ma su CardTrader da 3.64: possibile carta sbagliata, esclusa
+ESCLUSA Kyurem-ex 157/86: trend 2.45 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Blaziken-ex 024/159: trend 3.65 ma su CardTrader da 0.64: possibile carta sbagliata, esclusa
+ESCLUSA Kilowattrel di Kissara 055/159: trend 5.22 ma su CardTrader da 1.23: possibile carta sbagliata, esclusa
+ESCLUSA Mimikyu-ex 069/159: trend 15.9 ma su CardTrader da 0.24: possibile carta sbagliata, esclusa
+ESCLUSA Dunsparce 120/159: trend 2.14 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Kilowattrel di Kissara 163/159: trend 3.4 ma su CardTrader da 0.65: possibile carta sbagliata, esclusa
+ESCLUSA Pikachu-ex 028/131: trend 2.64 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
