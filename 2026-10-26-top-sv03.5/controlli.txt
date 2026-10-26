@@ -1,0 +1,6 @@
+ESCLUSA Ninetales-ex 038/165: trend 2.15 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Gengar 094/165: trend 2.76 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Vaporeon 134/165: trend 2.61 ma su CardTrader da 0.31: possibile carta sbagliata, esclusa
+ESCLUSA Dragonair 148/165: trend 3.11 ma su CardTrader da 0.6: possibile carta sbagliata, esclusa
+ESCLUSA Dragonite 149/165: trend 2.85 ma su CardTrader da 0.59: possibile carta sbagliata, esclusa
+ESCLUSA Mewtwo 150/165: trend 4.51 ma su CardTrader da 1.1: possibile carta sbagliata, esclusa
