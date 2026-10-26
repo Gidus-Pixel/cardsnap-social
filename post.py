@@ -208,12 +208,13 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
             # controllo incrociato: se su CardTrader la stessa carta costa molto meno,
             # il codice Cardmarket potrebbe puntare a un'altra carta (timbrata, promo...)
             ct_min = None
-            if row and not f and not timbrata:
+            # (con piu' versioni della stessa carta CardTrader non dice quale: niente confronto)
+            if row and not f and not piu_prodotti:
                 ct_min = row[1] if reverse_stesso else row[0]
                 if ct_min and trend > 4 * ct_min and trend - ct_min > 2:
                     nota.append(f'trend {trend} ma su CardTrader da {ct_min}: possibile carta sbagliata, esclusa')
                     dubbia = True
-            if not v.get('t') == 'reverse' and not f and not timbrata:
+            if not v.get('t') == 'reverse' and not f and not piu_prodotti:
                 if row and len(row) > 2 and row[2]:
                     it = row[2]
                     # un'offerta fuori mercato confonde: non la mostro
@@ -238,7 +239,7 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
                         'set': s['id'], 'set_it': s['it'], 'set_abbr': s.get('abbr') or '',
                         'rarita': c.get('r'), 'cm': cm, 'trend': trend, 'avg7': a7, 'avg30': a30,
                         'var': round((a7 - a30) / a30 * 100, 1) if a7 and a30 and not stabile else None,
-                        'speciale': bool(f) or timbrata, 'picco': picco, 'coerente': coerente,
+                        'speciale': bool(f), 'picco': picco, 'coerente': coerente,
                         # seconda fonte d'accordo: su CardTrader la carta parte da almeno il 40% del trend
                         'confermata': bool(ct_min and ct_min >= 0.4 * trend),
                         'it_ct': it, 'nota': nota, 'img_urls': immagini_candidate(c, s)})
