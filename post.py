@@ -102,6 +102,7 @@ class Dati:
         self.cat = json.loads(gzip.decompress(raw).decode('utf-8'))
         self.sets = {s['id']: s for s in self.cat['sets']}
         self.mock = mock
+        self.escluse: list[str] = []
         if mock:
             rnd = random.Random(7)
             self.guida = {}
@@ -194,9 +195,17 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
             else:
                 variante = ''
             nota = []
+            dubbia = False
             it = None
+            row = (d.ct.get('ct') or {}).get(str(c.get('ct')))
+            # controllo incrociato: se su CardTrader la stessa carta costa molto meno,
+            # il codice Cardmarket potrebbe puntare a un'altra carta (timbrata, promo...)
+            if row and not f:
+                ct_min = row[1] if reverse_stesso else row[0]
+                if ct_min and trend > 4 * ct_min and trend - ct_min > 2:
+                    nota.append(f'trend {trend} ma su CardTrader da {ct_min}: possibile carta sbagliata, esclusa')
+                    dubbia = True
             if not v.get('t') == 'reverse' and not f:
-                row = (d.ct.get('ct') or {}).get(str(c.get('ct')))
                 if row and len(row) > 2 and row[2]:
                     it = row[2]
                     # un'offerta fuori mercato confonde: non la mostro
@@ -205,12 +214,23 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
                         it = None
             if a30 and trend > 3 * a30:
                 nota.append(f'trend {trend} oltre 3 volte la media 30 gg ({a30})')
-            if a7 and trend < a7 / 3:
+                picco = True
+            elif a7 and trend < a7 / 3:
                 nota.append(f'trend {trend} molto sotto la media 7 gg ({a7})')
+                picco = True
+            else:
+                picco = False
+            # medie 7 e 30 identiche: poche vendite, la variazione non dice nulla
+            stabile = bool(a7 and a30 and abs(a7 - a30) < 0.005)
+            coerente = bool(a7 and 0.6 * a7 <= trend <= 1.6 * a7)
+            if dubbia:
+                d.escluse.append(f'{c["it"]} {numero(c, s)}: ' + '; '.join(nota))
+                continue
             out.append({'id': c['id'], 'nome': c['it'], 'numero': numero(c, s), 'variante': variante,
                         'set': s['id'], 'set_it': s['it'], 'set_abbr': s.get('abbr') or '',
                         'rarita': c.get('r'), 'cm': cm, 'trend': trend, 'avg7': a7, 'avg30': a30,
-                        'var': round((a7 - a30) / a30 * 100, 1) if a7 and a30 else None,
+                        'var': round((a7 - a30) / a30 * 100, 1) if a7 and a30 and not stabile else None,
+                        'speciale': bool(f), 'picco': picco, 'coerente': coerente,
                         'it_ct': it, 'nota': nota, 'img_urls': immagini_candidate(c, s)})
     return out
 
@@ -598,7 +618,8 @@ def fmt_movimenti(d: Dati, oggi: date) -> dict:
     sets = [s['id'] for s in d.set_principali(oggi)
             if oggi - timedelta(days=730) <= date.fromisoformat(s['rel']) <= oggi - timedelta(days=21)]
     pool = [r for r in voci(d, d.carte(sets))
-            if r['var'] is not None and r['trend'] >= 3 and (r['avg30'] or 0) >= 3 and (r['avg7'] or 0) >= 3]
+            if r['var'] is not None and r['trend'] >= 3 and (r['avg30'] or 0) >= 3 and (r['avg7'] or 0) >= 3
+            and not r['picco'] and r['coerente']]
     su = sorted([r for r in pool if r['var'] > 0], key=lambda r: -r['var'])[:5]
     giu = sorted([r for r in pool if r['var'] < 0], key=lambda r: r['var'])[:5]
     data_txt = oggi.strftime('%d/%m/%Y')
@@ -617,13 +638,14 @@ def fmt_bulk(d: Dati, oggi: date) -> dict:
     sets = [s['id'] for s in d.set_principali(oggi)
             if date.fromisoformat(s['rel']) >= oggi - timedelta(days=730)]
     pool = [r for r in voci(d, d.carte(sets))
-            if r['rarita'] in ('Common', 'Uncommon') and r['trend'] >= 1 and (r['avg30'] or 0) >= 0.8]
+            if r['rarita'] in ('Common', 'Uncommon') and not r['speciale'] and not r['picco']
+            and r['trend'] >= 1 and (r['avg30'] or 0) >= 0.8]
     top = sorted(pool, key=lambda r: -r['trend'])[:10]
     data_txt = oggi.strftime('%d/%m/%Y')
     righe = ["Bulk d'oro 💰 Comuni e non comuni che valgono più di 1 € su Cardmarket", '']
     righe += podio_testo(top, True)
     righe += ['', f'Controlla raccoglitori e scatole: in tutto {len(pool)} comuni e non comuni '
-                  'delle espansioni degli ultimi 2 anni superano 1 €.',
+                  '(normali o reverse) delle espansioni degli ultimi 2 anni superano 1 €.',
               '', NOTA_PREZZI(data_txt) + ' "Reverse" indica la versione reverse holo.',
               '', 'Ne hai trovata una? Scrivilo nei commenti 👇',
               '📲 Scansiona i tuoi doppioni con CardSnap e scopri quali vendere: link in bio',
@@ -668,6 +690,7 @@ def genera(p: dict, d: Dati, oggi: date):
             avvisi.append(f'{r["nome"]} {r["numero"]}: immagine non italiana ({u.split("/")[2]})')
         imgs.append(im)
         fonti.append(u)
+    avvisi += [f'ESCLUSA {x}' for x in d.escluse[:40]]
     if len(p['voci']) < 3:
         sys.exit(f'Solo {len(p["voci"])} carte: post non generato')
 
