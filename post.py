@@ -200,6 +200,7 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
             row = (d.ct.get('ct') or {}).get(str(c.get('ct')))
             # controllo incrociato: se su CardTrader la stessa carta costa molto meno,
             # il codice Cardmarket potrebbe puntare a un'altra carta (timbrata, promo...)
+            ct_min = None
             if row and not f:
                 ct_min = row[1] if reverse_stesso else row[0]
                 if ct_min and trend > 4 * ct_min and trend - ct_min > 2:
@@ -231,6 +232,8 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
                         'rarita': c.get('r'), 'cm': cm, 'trend': trend, 'avg7': a7, 'avg30': a30,
                         'var': round((a7 - a30) / a30 * 100, 1) if a7 and a30 and not stabile else None,
                         'speciale': bool(f), 'picco': picco, 'coerente': coerente,
+                        # seconda fonte d'accordo: su CardTrader la carta parte da almeno il 40% del trend
+                        'confermata': bool(ct_min and ct_min >= 0.4 * trend),
                         'it_ct': it, 'nota': nota, 'img_urls': immagini_candidate(c, s)})
     return out
 
@@ -619,7 +622,8 @@ def fmt_movimenti(d: Dati, oggi: date) -> dict:
             if oggi - timedelta(days=730) <= date.fromisoformat(s['rel']) <= oggi - timedelta(days=21)]
     pool = [r for r in voci(d, d.carte(sets))
             if r['var'] is not None and r['trend'] >= 3 and (r['avg30'] or 0) >= 3 and (r['avg7'] or 0) >= 3
-            and not r['picco'] and r['coerente']]
+            and not r['picco'] and r['coerente']
+            and (r['confermata'] or r['rarita'] not in ('Common', 'Uncommon'))]
     su = sorted([r for r in pool if r['var'] > 0], key=lambda r: -r['var'])[:5]
     giu = sorted([r for r in pool if r['var'] < 0], key=lambda r: r['var'])[:5]
     data_txt = oggi.strftime('%d/%m/%Y')
@@ -639,7 +643,7 @@ def fmt_bulk(d: Dati, oggi: date) -> dict:
             if date.fromisoformat(s['rel']) >= oggi - timedelta(days=730)]
     pool = [r for r in voci(d, d.carte(sets))
             if r['rarita'] in ('Common', 'Uncommon') and not r['speciale'] and not r['picco']
-            and r['trend'] >= 1 and (r['avg30'] or 0) >= 0.8]
+            and r['confermata'] and r['trend'] >= 1 and (r['avg30'] or 0) >= 0.8]
     top = sorted(pool, key=lambda r: -r['trend'])[:10]
     data_txt = oggi.strftime('%d/%m/%Y')
     righe = ["Bulk d'oro 💰 Comuni e non comuni che valgono più di 1 € su Cardmarket", '']
