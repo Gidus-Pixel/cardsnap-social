@@ -1,0 +1,16 @@
+Charizard 4/102: immagine non italiana (images.pokemontcg.io)
+Blastoise 2/102: immagine non italiana (images.pokemontcg.io)
+Mewtwo 10/102: immagine non italiana (images.pokemontcg.io)
+Venusaur 15/102: immagine non italiana (images.pokemontcg.io)
+Ninetales 12/102: immagine non italiana (images.pokemontcg.io)
+Charizard 4/102: immagine non italiana (images.pokemontcg.io)
+Zapdos 16/102: immagine non italiana (images.pokemontcg.io)
+Pikachu 58/102: immagine non italiana (images.pokemontcg.io)
+Alakazam 1/102: immagine non italiana (images.pokemontcg.io)
+Gyarados 6/102: immagine non italiana (images.pokemontcg.io)
+ESCLUSA Dratini 26/102: trend 3.01 ma su CardTrader da 0.56: possibile carta sbagliata, esclusa
+ESCLUSA Ivysaur 30/102: trend 4.64 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Kadabra 32/102: trend 2.41 ma su CardTrader da 0.4: possibile carta sbagliata, esclusa
+ESCLUSA Magmar 36/102: trend 7.41 ma su CardTrader da 1.6: possibile carta sbagliata, esclusa
+ESCLUSA Charmander 46/102: trend 11.82 ma su CardTrader da 1.0: possibile carta sbagliata, esclusa
+ESCLUSA Pikachu 58/102: trend 377.39 ma su CardTrader da 7.72: possibile carta sbagliata, esclusa
