@@ -1,6 +1,6 @@
 {
  "data": "2026-10-26",
- "generato": "2026-10-26T16:02:52+00:00",
+ "generato": "2026-10-26T16:04:45+00:00",
  "formato": "top",
  "chiave": "base1",
  "prova": false,
@@ -158,7 +158,7 @@
    "id": "base1-58",
    "nome": "Pikachu",
    "numero": "58/102",
-   "variante": "",
+   "variante": "Guance rosse",
    "set": "base1",
    "set_it": "Set Base",
    "set_abbr": "BS",
