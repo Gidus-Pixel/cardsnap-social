@@ -1,6 +1,6 @@
 {
  "data": "2026-10-26",
- "generato": "2026-10-26T15:51:23+00:00",
+ "generato": "2026-10-26T15:53:10+00:00",
  "formato": "movimenti",
  "chiave": "settimana",
  "prova": false,
@@ -24,6 +24,7 @@
    "speciale": false,
    "picco": false,
    "coerente": true,
+   "confermata": false,
    "it_ct": 3.1,
    "img": "https://assets.tcgdex.net/it/sv/sv10.5b/140/high.png"
   },
@@ -44,6 +45,7 @@
    "speciale": false,
    "picco": false,
    "coerente": true,
+   "confermata": false,
    "it_ct": 35.51,
    "img": "https://assets.tcgdex.net/it/sv/sv10.5w/105/high.png"
   },
@@ -64,6 +66,7 @@
    "speciale": true,
    "picco": false,
    "coerente": true,
+   "confermata": false,
    "it_ct": null,
    "img": "https://assets.tcgdex.net/it/sv/sv08.5/013/high.png"
   },
@@ -84,6 +87,7 @@
    "speciale": false,
    "picco": false,
    "coerente": true,
+   "confermata": true,
    "it_ct": 96.31,
    "img": "https://assets.tcgdex.net/it/sv/sv08.5/162/high.png"
   },
@@ -104,8 +108,9 @@
    "speciale": false,
    "picco": false,
    "coerente": true,
+   "confermata": false,
    "it_ct": 14.08,
-   "img": "https://images.pokemontcg.io/zsv10pt5/146.png"
+   "img": "https://assets.tcgdex.net/it/sv/sv10.5b/146/high.png"
   },
   {
    "id": "sv10.5w-155",
@@ -124,28 +129,9 @@
    "speciale": false,
    "picco": false,
    "coerente": true,
+   "confermata": true,
    "it_ct": 4.11,
    "img": "https://assets.tcgdex.net/it/sv/sv10.5w/155/high.png"
-  },
-  {
-   "id": "sv08-050",
-   "nome": "Quaxly",
-   "numero": "050/191",
-   "variante": "",
-   "set": "sv08",
-   "set_it": "Scintille Folgoranti",
-   "set_abbr": "SSP",
-   "rarita": "Common",
-   "cm": 794947,
-   "trend": 15.39,
-   "avg7": 13.48,
-   "avg30": 22.4,
-   "var": -39.8,
-   "speciale": false,
-   "picco": false,
-   "coerente": true,
-   "it_ct": null,
-   "img": "https://assets.tcgdex.net/it/sv/sv08/050/high.png"
   },
   {
    "id": "me02.5-294",
@@ -164,6 +150,7 @@
    "speciale": false,
    "picco": false,
    "coerente": true,
+   "confermata": true,
    "it_ct": 279.64,
    "img": "https://assets.tcgdex.net/it/me/me02.5/294/high.png"
   },
@@ -184,6 +171,7 @@
    "speciale": false,
    "picco": false,
    "coerente": true,
+   "confermata": true,
    "it_ct": 27.25,
    "img": "https://assets.tcgdex.net/it/sv/sv10.5b/087/high.png"
   },
@@ -204,8 +192,30 @@
    "speciale": false,
    "picco": false,
    "coerente": true,
+   "confermata": true,
    "it_ct": 6.04,
    "img": "https://assets.tcgdex.net/it/sv/sv10.5w/106/high.png"
+  },
+  {
+   "id": "sv10.5b-118",
+   "nome": "Solosis",
+   "numero": "118/86",
+   "variante": "",
+   "set": "sv10.5b",
+   "set_it": "Luce Nera",
+   "set_abbr": "BLK",
+   "rarita": "Illustration rare",
+   "cm": 836148,
+   "trend": 16.86,
+   "avg7": 18.33,
+   "avg30": 26.89,
+   "var": -31.8,
+   "speciale": false,
+   "picco": false,
+   "coerente": true,
+   "confermata": true,
+   "it_ct": 10.15,
+   "img": "https://assets.tcgdex.net/it/sv/sv10.5b/118/high.png"
   }
  ]
 }
