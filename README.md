@@ -12,7 +12,7 @@ Dati: guida prezzi ufficiale di Cardmarket (trend e medie a 7 e 30 giorni, tutte
 |---|---|
 | Lunedì | Le 20 carte più care di un'espansione recente |
 | Martedì | 5 carte che salgono e 5 che scendono |
-| Mercoledì | Bulk d'oro: comuni e non comuni sopra 1 € |
+| Mercoledì | Le 10 Illustration Rare più care dell'ultimo anno |
 | Giovedì | Le 10 più care di un'espansione amata |
 | Venerdì | Le 10 più care di un'espansione vintage |
 

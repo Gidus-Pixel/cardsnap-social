@@ -5,14 +5,16 @@ Uso (lo lancia il workflow .github/workflows/prepara.yml):
   python3 post.py auto                formato del giorno (ora di Roma)
   python3 post.py top --set 30th      le carte piu' care di un'espansione
   python3 post.py movimenti           5 carte che salgono e 5 che scendono
-  python3 post.py bulk                comuni e non comuni sopra 1 euro
+  python3 post.py illustrazioni       le 10 Illustration Rare piu' care dell'ultimo anno
+  python3 post.py bulk                comuni e non comuni sopra 1 euro, confermati da
+                                      CardTrader (oggi quasi sempre vuoto: non e' in rotazione)
   opzioni: --n 10 (quante carte), --data 2026-10-27 (finge un altro giorno),
            --mock (prezzi e immagini FINTI, solo per provare la grafica)
 
 Settimana ("auto"):
   lunedi'   top 20 di una delle 4 espansioni piu' recenti (a rotazione)
   martedi'  movimenti della settimana (espansioni degli ultimi 2 anni)
-  mercoledi' bulk d'oro: comuni e non comuni (anche reverse) sopra 1 euro
+  mercoledi' le 10 Illustration Rare piu' care dell'ultimo anno
   giovedi'  top 10 di un'espansione amata (151, Evoluzioni Prismatiche...)
   venerdi'  top 10 di un'espansione vintage
   sabato e domenica nessun post automatico.
@@ -185,7 +187,12 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
             if not trend:
                 continue
             f = v.get('f')
-            if v.get('t') == 'reverse':
+            st = v.get('st') or ''
+            # timbro solo su questa versione (non su tutta l'espansione): e' un'altra carta
+            timbrata = bool(st) and 'first' not in st and any(not w.get('st') for w in vs)
+            if timbrata:
+                variante = 'Timbrata'
+            elif v.get('t') == 'reverse':
                 variante = f'Reverse {SPECIALI.get(f, f)}' if f else 'Reverse'
             elif f:
                 variante = SPECIALI.get(f, f)
@@ -201,12 +208,12 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
             # controllo incrociato: se su CardTrader la stessa carta costa molto meno,
             # il codice Cardmarket potrebbe puntare a un'altra carta (timbrata, promo...)
             ct_min = None
-            if row and not f:
+            if row and not f and not timbrata:
                 ct_min = row[1] if reverse_stesso else row[0]
                 if ct_min and trend > 4 * ct_min and trend - ct_min > 2:
                     nota.append(f'trend {trend} ma su CardTrader da {ct_min}: possibile carta sbagliata, esclusa')
                     dubbia = True
-            if not v.get('t') == 'reverse' and not f:
+            if not v.get('t') == 'reverse' and not f and not timbrata:
                 if row and len(row) > 2 and row[2]:
                     it = row[2]
                     # un'offerta fuori mercato confonde: non la mostro
@@ -231,7 +238,7 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
                         'set': s['id'], 'set_it': s['it'], 'set_abbr': s.get('abbr') or '',
                         'rarita': c.get('r'), 'cm': cm, 'trend': trend, 'avg7': a7, 'avg30': a30,
                         'var': round((a7 - a30) / a30 * 100, 1) if a7 and a30 and not stabile else None,
-                        'speciale': bool(f), 'picco': picco, 'coerente': coerente,
+                        'speciale': bool(f) or timbrata, 'picco': picco, 'coerente': coerente,
                         # seconda fonte d'accordo: su CardTrader la carta parte da almeno il 40% del trend
                         'confermata': bool(ct_min and ct_min >= 0.4 * trend),
                         'it_ct': it, 'nota': nota, 'img_urls': immagini_candidate(c, s)})
@@ -660,6 +667,29 @@ def fmt_bulk(d: Dati, oggi: date) -> dict:
             'didascalia': '\n'.join(righe), 'totale': len(pool)}
 
 
+def fmt_illustrazioni(d: Dati, oggi: date) -> dict:
+    sets = [s['id'] for s in d.set_principali(oggi)
+            if date.fromisoformat(s['rel']) >= oggi - timedelta(days=365)]
+    pool = [r for r in voci(d, d.carte(sets))
+            if r['rarita'] == 'Illustration rare' and not r['speciale'] and not r['picco']]
+    top = sorted(pool, key=lambda r: -r['trend'])[:10]
+    data_txt = oggi.strftime('%d/%m/%Y')
+    righe = ["Le 10 Illustration Rare più care dell'ultimo anno su Cardmarket 🎨", '']
+    righe += podio_testo(top, True)
+    sale = [r for r in top if r['var'] is not None and r['var'] > 0]
+    if sale:
+        m = max(sale, key=lambda r: r['var'])
+        righe += ['', f'📈 Sale di più: {m["nome"]} ({m["set_it"]} {m["numero"]}, {pct(m["var"])} in 7 giorni)']
+    righe += ['', NOTA_PREZZI(data_txt) + ' "IT da" è l\'offerta più bassa in italiano su CardTrader.',
+              '', 'Qual è la tua preferita? Scrivilo nei commenti 👇',
+              '📲 Scansiona la tua collezione con CardSnap: link in bio', '',
+              hashtag(['#illustrationrare', '#pokemonart'])]
+    return {'formato': 'illustrazioni', 'chiave': 'anno', 'voci': top, 'multi': True,
+            'kicker': 'CLASSIFICA PREZZI CARDMARKET', 'titolo': 'Illustration Rare',
+            'holo': 'le più care', 'info': f"Espansioni uscite nell'ultimo anno · {len(pool)} carte",
+            'didascalia': '\n'.join(righe)}
+
+
 def scegli(d: Dati, oggi: date) -> dict | None:
     sett = oggi.isocalendar()[1]
     g = oggi.weekday()
@@ -669,7 +699,7 @@ def scegli(d: Dati, oggi: date) -> dict | None:
     if g == 1:
         return fmt_movimenti(d, oggi)
     if g == 2:
-        return fmt_bulk(d, oggi)
+        return fmt_illustrazioni(d, oggi)
     if g == 3:
         amate = [x for x in AMATE if x in d.sets]
         return fmt_top(d, amate[sett % len(amate)], 10, oggi)
@@ -756,7 +786,7 @@ def genera(p: dict, d: Dati, oggi: date):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('formato', choices=['auto', 'top', 'movimenti', 'bulk'])
+    ap.add_argument('formato', choices=['auto', 'top', 'movimenti', 'illustrazioni', 'bulk'])
     ap.add_argument('--set', default='30th')
     ap.add_argument('--n', type=int, default=20)
     ap.add_argument('--data', help='giorno da usare (AAAA-MM-GG), di default oggi a Roma')
@@ -773,6 +803,8 @@ def main():
         p = fmt_top(d, a.set, a.n, oggi)
     elif a.formato == 'movimenti':
         p = fmt_movimenti(d, oggi)
+    elif a.formato == 'illustrazioni':
+        p = fmt_illustrazioni(d, oggi)
     else:
         p = fmt_bulk(d, oggi)
     genera(p, d, oggi)

@@ -11,7 +11,7 @@ on:
       formato:
         description: 'Formato (auto = quello del giorno)'
         type: choice
-        options: [auto, top, movimenti, bulk]
+        options: [auto, top, movimenti, illustrazioni, bulk]
         default: auto
       set:
         description: "Per 'top': codice dell'espansione (es. 30th, sv03.5, base1)"
