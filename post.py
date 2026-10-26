@@ -189,16 +189,16 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
             f = v.get('f')
             st = v.get('st') or ''
             # timbro solo su questa versione (non su tutta l'espansione): e' un'altra carta
-            timbrata = bool(st) and 'first' not in st and any(not w.get('st') for w in vs)
-            if timbrata:
-                variante = 'Timbrata'
-            elif v.get('t') == 'reverse':
+            prima_ed = '1st' in st or 'first' in st
+            timbrata = bool(st) and not prima_ed and any(not w.get('st') for w in vs)
+            if timbrata:  # promo timbrate (Pokemon Center, prerelease...): non sono carte del set
+                continue
+            if v.get('t') == 'reverse':
                 variante = f'Reverse {SPECIALI.get(f, f)}' if f else 'Reverse'
             elif f:
                 variante = SPECIALI.get(f, f)
             elif piu_prodotti:
-                variante = SOTTOTIPI.get(v.get('s') or '', '') or (
-                    '1ª edizione' if 'first' in (v.get('st') or '') else '')
+                variante = SOTTOTIPI.get(v.get('s') or '', '') or ('1ª edizione' if prima_ed else '')
             else:
                 variante = ''
             nota = []
