@@ -754,7 +754,7 @@ def genera(p: dict, d: Dati, oggi: date):
         if p['formato'] == 'bulk':
             extra = ('Reverse', 'La versione reverse holo della carta: ha un prezzo diverso da quella '
                                 'normale. "IT da" è l\'offerta più bassa in italiano su CardTrader.')
-        elif d.sets[p['chiave']]['rel'] < '2005':
+        elif p['formato'] == 'top' and d.sets[p['chiave']]['rel'] < '2005':
             extra = ('Vintage', 'Il trend mescola edizioni e lingue: una 1ª edizione o una carta '
                                 'in condizioni perfette vale molto di più.')
         slides.append(pagina_finale(data_txt, pagine, extra))
