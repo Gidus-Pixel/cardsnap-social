@@ -67,7 +67,11 @@ SPECIALI = {'cosmos': 'Cosmos', 'pokeball': 'Poké Ball', 'energy': 'Energia', '
             'cracked-ice': 'Cracked Ice', 'duskball': 'Dusk Ball', 'loveball': 'Love Ball',
             'friendball': 'Friend Ball', 'quickball': 'Quick Ball', 'tinsel': 'Tinsel',
             'team-rocket': 'Team Rocket', 'starlight': 'Starlight'}
-SOTTOTIPI = {'shadowless': 'Shadowless', 'unlimited': 'Unlimited'}
+SOTTOTIPI = {'shadowless': 'Shadowless', 'unlimited': 'Unlimited', 'shadowless-red-cheek': 'Guance rosse'}
+
+
+def sottotipo(x: str) -> str:
+    return SOTTOTIPI.get(x) or x.replace('-', ' ').capitalize()
 RGB = {'R': 'versione rossa', 'G': 'versione verde', 'B': 'versione blu'}
 
 W, H = 1080, 1350
@@ -198,7 +202,7 @@ def voci(d: Dati, carte: list[dict]) -> list[dict]:
             elif f:
                 variante = SPECIALI.get(f, f)
             elif piu_prodotti:
-                variante = SOTTOTIPI.get(v.get('s') or '', '') or ('1ª edizione' if prima_ed else '')
+                variante = sottotipo(v.get('s') or '') or ('1ª edizione' if prima_ed else '')
             else:
                 variante = ''
             nota = []
