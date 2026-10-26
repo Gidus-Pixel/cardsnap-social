@@ -1,6 +1,6 @@
 {
  "data": "2026-10-26",
- "generato": "2026-10-26T15:56:20+00:00",
+ "generato": "2026-10-26T16:00:57+00:00",
  "formato": "top",
  "chiave": "sv03.5",
  "prova": false,
@@ -90,27 +90,6 @@
    "confermata": true,
    "it_ct": 90.64,
    "img": "https://assets.tcgdex.net/it/sv/sv03.5/198/high.png"
-  },
-  {
-   "id": "sv03.5-004",
-   "nome": "Charmander",
-   "numero": "004/165",
-   "variante": "Timbrata",
-   "set": "sv03.5",
-   "set_it": "151",
-   "set_abbr": "MEW",
-   "rarita": "Common",
-   "cm": 720366,
-   "trend": 92.65,
-   "avg7": 116.56,
-   "avg30": 85.78,
-   "var": 35.9,
-   "speciale": true,
-   "picco": false,
-   "coerente": true,
-   "confermata": false,
-   "it_ct": null,
-   "img": "https://assets.tcgdex.net/it/sv/sv03.5/004/high.png"
   },
   {
    "id": "sv03.5-168",
@@ -216,6 +195,27 @@
    "confermata": true,
    "it_ct": 41.13,
    "img": "https://assets.tcgdex.net/it/sv/sv03.5/166/high.png"
+  },
+  {
+   "id": "sv03.5-169",
+   "nome": "Charmeleon",
+   "numero": "169/165",
+   "variante": "",
+   "set": "sv03.5",
+   "set_it": "151",
+   "set_abbr": "MEW",
+   "rarita": "Illustration rare",
+   "cm": 733764,
+   "trend": 57.6,
+   "avg7": 57.44,
+   "avg30": 57.73,
+   "var": -0.5,
+   "speciale": false,
+   "picco": false,
+   "coerente": true,
+   "confermata": true,
+   "it_ct": 38.52,
+   "img": "https://assets.tcgdex.net/it/sv/sv03.5/169/high.png"
   }
  ]
 }
