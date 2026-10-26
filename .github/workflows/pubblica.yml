@@ -1,0 +1,57 @@
+# Pubblica su Instagram un post del ramo "anteprime" (pubblica.py).
+# Parte solo a mano, dopo l'ok di Gigi. Serve il segreto IG_TOKEN.
+name: Pubblica su Instagram
+
+on:
+  workflow_dispatch:
+    inputs:
+      cartella:
+        description: "Cartella del post nel ramo anteprime (vuoto = quella di oggi)"
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: anteprime
+  cancel-in-progress: false
+
+jobs:
+  pubblica:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: codice
+      - uses: actions/checkout@v4
+        with:
+          ref: anteprime
+          path: anteprime
+      - name: Scegli la cartella
+        id: c
+        env:
+          CARTELLA: ${{ inputs.cartella }}
+        run: |
+          cd anteprime
+          if [ -z "$CARTELLA" ]; then
+            CARTELLA=$(ls -d "$(TZ=Europe/Rome date +%F)"-*/ 2>/dev/null | grep -v PROVA | head -1 | tr -d /)
+          fi
+          if [ -z "$CARTELLA" ] || [ ! -d "$CARTELLA" ]; then
+            echo "::error::Nessun post da pubblicare (${CARTELLA:-oggi})"; exit 1
+          fi
+          echo "cartella=$CARTELLA" >> "$GITHUB_OUTPUT"
+      - name: Pubblica
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+        run: python3 codice/pubblica.py "anteprime/${{ steps.c.outputs.cartella }}"
+      - name: Segna come pubblicato
+        if: always() && steps.c.outputs.cartella != ''
+        run: |
+          cd anteprime
+          [ -f "${{ steps.c.outputs.cartella }}/pubblicato.json" ] || exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Pubblicato ${{ steps.c.outputs.cartella }}" || exit 0
+          for i in 1 2 3; do git push -q origin HEAD:anteprime && break; git pull -q --rebase origin anteprime; done

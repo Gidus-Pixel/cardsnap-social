@@ -1,0 +1,73 @@
+# Prepara il post Instagram del giorno (post.py) e lo mette nel ramo "anteprime".
+# Ogni mattina dal lunedi' al venerdi' (07:40 a Roma d'inverno, 08:40 d'estate)
+# oppure a mano con formato ed espansione a scelta. Non pubblica nulla.
+name: Prepara il post
+
+on:
+  schedule:
+    - cron: '40 6 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      formato:
+        description: 'Formato (auto = quello del giorno)'
+        type: choice
+        options: [auto, top, movimenti, bulk]
+        default: auto
+      set:
+        description: "Per 'top': codice dell'espansione (es. 30th, sv03.5, base1)"
+        default: '30th'
+      n:
+        description: "Per 'top': quante carte"
+        default: '20'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: anteprime
+  cancel-in-progress: false
+
+jobs:
+  prepara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install "pillow>=11"
+      - name: Genera il post
+        env:
+          FORMATO: ${{ inputs.formato || 'auto' }}
+          SET: ${{ inputs.set || '30th' }}
+          N: ${{ inputs.n || '20' }}
+        run: |
+          if [ "$FORMATO" = "top" ]; then
+            python3 post.py top --set "$SET" --n "$N"
+          else
+            python3 post.py "$FORMATO"
+          fi
+      - name: Salva nel ramo anteprime
+        run: |
+          ls out/*/01.jpg >/dev/null 2>&1 || { echo "Nessun post oggi"; exit 0; }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch -q origin anteprime; then
+            git worktree add -q -B anteprime /tmp/ant origin/anteprime
+          else
+            git worktree add -q --orphan -b anteprime /tmp/ant
+          fi
+          for d in out/*/; do
+            n=$(basename "$d")
+            if [ -f "/tmp/ant/$n/pubblicato.json" ]; then
+              echo "::warning::$n e' gia' pubblicato: non lo sovrascrivo"; continue
+            fi
+            rm -rf "/tmp/ant/$n"; cp -r "$d" "/tmp/ant/$n"
+            echo "### $n" >> "$GITHUB_STEP_SUMMARY"
+            sed 's/^/    /' "$d/controlli.txt" >> "$GITHUB_STEP_SUMMARY"
+          done
+          cd /tmp/ant
+          git add -A
+          git commit -q -m "Anteprima $(TZ=Europe/Rome date +%F)" || exit 0
+          for i in 1 2 3; do git push -q origin anteprime && break; git pull -q --rebase origin anteprime; done
