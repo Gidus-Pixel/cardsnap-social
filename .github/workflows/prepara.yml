@@ -63,6 +63,9 @@ jobs:
             if [ -f "/tmp/ant/$n/pubblicato.json" ]; then
               echo "::warning::$n e' gia' pubblicato: non lo sovrascrivo"; continue
             fi
+            if [ -f "/tmp/ant/$n/approvato.json" ]; then
+              echo "::warning::$n e' gia' approvato da Gigi: non lo sovrascrivo"; continue
+            fi
             rm -rf "/tmp/ant/$n"; cp -r "$d" "/tmp/ant/$n"
             echo "### $n" >> "$GITHUB_STEP_SUMMARY"
             sed 's/^/    /' "$d/controlli.txt" >> "$GITHUB_STEP_SUMMARY"
