@@ -3,6 +3,7 @@
 
 Uso (lo lancia il workflow .github/workflows/pubblica.yml):
   python3 pubblica.py <cartella del post>
+  python3 pubblica.py --verifica      (controlla solo il token, non pubblica)
 
 Usa la "Instagram API with Instagram Login" (graph.instagram.com):
   - token nel segreto IG_TOKEN del repository (mai nel codice);
@@ -60,11 +61,31 @@ def aspetta(cid: str, token: str):
     sys.exit(f'Contenitore {cid} non pronto dopo 150 secondi')
 
 
+def verifica(token: str):
+    """Controlla il token senza pubblicare nulla: account e quota giornaliera."""
+    io_ = chiama('GET', 'me', token, fields='user_id,username,account_type')
+    uid = io_.get('user_id') or io_.get('id')
+    quota = chiama('GET', f'{uid}/content_publishing_limit', token, fields='quota_usage,config')
+    q = (quota.get('data') or [{}])[0]
+    usati = q.get('quota_usage', '?')
+    massimo = (q.get('config') or {}).get('quota_total', '?')
+    riga = (f"Token valido: account @{io_.get('username')} ({io_.get('account_type', '?')}), "
+            f"post pubblicati nelle ultime 24 ore {usati} su {massimo}")
+    print(riga)
+    out = os.environ.get('GITHUB_STEP_SUMMARY')
+    if out:
+        with open(out, 'a', encoding='utf-8') as f:
+            f.write(riga + '\n')
+
+
 def main():
-    cartella = Path(sys.argv[1]).resolve()
     token = os.environ.get('IG_TOKEN', '').strip()
     if not token:
         sys.exit('Segreto IG_TOKEN mancante: va inserito nelle impostazioni del repository')
+    if sys.argv[1] == '--verifica':
+        verifica(token)
+        return
+    cartella = Path(sys.argv[1]).resolve()
     fatto = cartella / 'pubblicato.json'
     if fatto.exists():
         print(f'Gia\' pubblicato: {json.loads(fatto.read_text())["permalink"]}')

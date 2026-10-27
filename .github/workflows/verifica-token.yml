@@ -1,0 +1,20 @@
+# Controlla che il segreto IG_TOKEN funzioni, senza pubblicare nulla.
+# Si lancia a mano dopo aver inserito o rinnovato il token.
+name: Verifica token Instagram
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verifica:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verifica
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+        run: python3 pubblica.py --verifica
