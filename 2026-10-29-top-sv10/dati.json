@@ -1,11 +1,11 @@
 {
  "data": "2026-10-29",
- "generato": "2026-10-29T06:59:40+00:00",
+ "generato": "2026-10-29T12:56:00+00:00",
  "formato": "top",
  "chiave": "sv10",
  "prova": false,
  "pagine": 3,
- "listino_cardtrader": "2026-10-28",
+ "listino_cardtrader": "2026-10-29",
  "voci": [
   {
    "id": "sv10-231",
@@ -46,7 +46,7 @@
    "picco": false,
    "coerente": true,
    "confermata": true,
-   "it_ct": 130.64,
+   "it_ct": 100.64,
    "img": "https://assets.tcgdex.net/it/sv/sv10/232/high.png"
   },
   {
@@ -67,7 +67,7 @@
    "picco": false,
    "coerente": true,
    "confermata": true,
-   "it_ct": 142.73,
+   "it_ct": 142.72,
    "img": "https://assets.tcgdex.net/it/sv/sv10/230/high.png"
   },
   {
