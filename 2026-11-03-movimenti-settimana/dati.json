@@ -1,11 +1,11 @@
 {
  "data": "2026-11-03",
- "generato": "2026-11-03T06:59:31+00:00",
+ "generato": "2026-11-03T14:06:50+00:00",
  "formato": "movimenti",
  "chiave": "settimana",
  "prova": false,
  "pagine": 3,
- "listino_cardtrader": "2026-11-02",
+ "listino_cardtrader": "2026-11-03",
  "voci": [
   {
    "id": "sv10.5b-146",
@@ -109,7 +109,7 @@
    "picco": false,
    "coerente": true,
    "confermata": false,
-   "it_ct": 86.05,
+   "it_ct": 86.03,
    "img": "https://assets.tcgdex.net/it/sv/sv08.5/149/high.png"
   },
   {
