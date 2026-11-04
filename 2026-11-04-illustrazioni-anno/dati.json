@@ -1,11 +1,11 @@
 {
  "data": "2026-11-04",
- "generato": "2026-11-04T07:08:57+00:00",
+ "generato": "2026-11-04T14:27:10+00:00",
  "formato": "illustrazioni",
  "chiave": "anno",
  "prova": false,
  "pagine": 3,
- "listino_cardtrader": "2026-11-03",
+ "listino_cardtrader": "2026-11-04",
  "voci": [
   {
    "id": "me02.5-226",
@@ -46,7 +46,7 @@
    "picco": false,
    "coerente": true,
    "confermata": true,
-   "it_ct": 7.52,
+   "it_ct": 7.5,
    "img": "https://assets.tcgdex.net/it/me/me02/106/high.png"
   },
   {
@@ -109,7 +109,7 @@
    "picco": false,
    "coerente": true,
    "confermata": true,
-   "it_ct": 5.93,
+   "it_ct": 5.92,
    "img": "https://assets.tcgdex.net/it/me/me02.5/218/high.png"
   },
   {
