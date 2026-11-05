@@ -1,11 +1,11 @@
 {
  "data": "2026-11-05",
- "generato": "2026-11-05T06:59:53+00:00",
+ "generato": "2026-11-05T14:35:33+00:00",
  "formato": "top",
  "chiave": "sv06",
  "prova": false,
  "pagine": 3,
- "listino_cardtrader": "2026-11-04",
+ "listino_cardtrader": "2026-11-05",
  "voci": [
   {
    "id": "sv06-214",
@@ -88,7 +88,7 @@
    "picco": false,
    "coerente": true,
    "confermata": true,
-   "it_ct": 14.94,
+   "it_ct": 14.93,
    "img": "https://assets.tcgdex.net/it/sv/sv06/187/high.png"
   },
   {
