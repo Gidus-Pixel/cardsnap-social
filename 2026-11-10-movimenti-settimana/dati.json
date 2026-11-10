@@ -1,11 +1,11 @@
 {
  "data": "2026-11-10",
- "generato": "2026-11-10T07:08:45+00:00",
+ "generato": "2026-11-10T14:49:35+00:00",
  "formato": "movimenti",
  "chiave": "settimana",
  "prova": false,
  "pagine": 3,
- "listino_cardtrader": "2026-11-09",
+ "listino_cardtrader": "2026-11-10",
  "voci": [
   {
    "id": "me01-150",
@@ -67,7 +67,7 @@
    "picco": false,
    "coerente": true,
    "confermata": true,
-   "it_ct": 24.14,
+   "it_ct": 24.09,
    "img": "https://assets.tcgdex.net/it/sv/sv08.5/157/high.png"
   },
   {
