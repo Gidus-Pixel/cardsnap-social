@@ -1,28 +1,30 @@
-ESCLUSA Lapras 131/128: trend 4.38 ma su CardTrader da 0.16: possibile carta sbagliata, esclusa
-ESCLUSA Morpeko 135/128: trend 2.97 ma su CardTrader da 0.55: possibile carta sbagliata, esclusa
+ESCLUSA Moltres 130/128: trend 4.08 ma su CardTrader da 0.9: possibile carta sbagliata, esclusa
+ESCLUSA Lapras 131/128: trend 4.38 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
+ESCLUSA Morpeko 135/128: trend 2.97 ma su CardTrader da 0.58: possibile carta sbagliata, esclusa
 ESCLUSA Mega Froslass-ex 047/217: trend 2.43 ma su CardTrader da 0.34: possibile carta sbagliata, esclusa
 ESCLUSA Pikachu-ex 057/217: trend 3.8 ma su CardTrader da 0.9: possibile carta sbagliata, esclusa
 ESCLUSA Clefairy-ex di Lylia 076/217: trend 2.34 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
 ESCLUSA Fezandipiti-ex 142/217: trend 4.25 ma su CardTrader da 0.19: possibile carta sbagliata, esclusa
 ESCLUSA Dustox 220/217: trend 2.65 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
-ESCLUSA Wattrel di Kissara 231/217: trend 4.6 ma su CardTrader da 1.13: possibile carta sbagliata, esclusa
+ESCLUSA Wattrel di Kissara 231/217: trend 4.6 ma su CardTrader da 1.11: possibile carta sbagliata, esclusa
 ESCLUSA Marill 232/217: trend 7.12 ma su CardTrader da 0.83: possibile carta sbagliata, esclusa
 ESCLUSA Hitmontop 240/217: trend 3.48 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
 ESCLUSA Medicham 241/217: trend 2.8 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
-ESCLUSA Mega Hawlucha-ex 268/217: trend 3.76 ma su CardTrader da 0.23: possibile carta sbagliata, esclusa
+ESCLUSA Mega Hawlucha-ex 268/217: trend 3.76 ma su CardTrader da 0.22: possibile carta sbagliata, esclusa
 ESCLUSA Mega Kangaskhan-ex 104/132: trend 3.67 ma su CardTrader da 0.6: possibile carta sbagliata, esclusa
 ESCLUSA Spearow 151/132: trend 5.26 ma su CardTrader da 1.05: possibile carta sbagliata, esclusa
-ESCLUSA Rowlet 090/88: trend 4.2 ma su CardTrader da 0.48: possibile carta sbagliata, esclusa
+ESCLUSA Rowlet 090/88: trend 4.2 ma su CardTrader da 0.47: possibile carta sbagliata, esclusa
 ESCLUSA Mega Charizard X-ex 013/94: trend 2.39 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
 ESCLUSA Dewgong 097/94: trend 3.02 ma su CardTrader da 0.74: possibile carta sbagliata, esclusa
 ESCLUSA Wigglytuff 105/94: trend 4.16 ma su CardTrader da 0.88: possibile carta sbagliata, esclusa
 ESCLUSA Lucinda 118/94: trend 4.51 ma su CardTrader da 0.11: possibile carta sbagliata, esclusa
-ESCLUSA Goldeen 087/84: trend 6.43 ma su CardTrader da 1.33: possibile carta sbagliata, esclusa
+ESCLUSA Goldeen 087/84: trend 6.43 ma su CardTrader da 1.3: possibile carta sbagliata, esclusa
 ESCLUSA Tirtouga 106/86: trend 20.05 ma su CardTrader da 4.44: possibile carta sbagliata, esclusa
 ESCLUSA Throh 128/86: trend 7.75 ma su CardTrader da 1.23: possibile carta sbagliata, esclusa
 ESCLUSA Klink 139/86: trend 20.12 ma su CardTrader da 3.61: possibile carta sbagliata, esclusa
-ESCLUSA Pawniard 142/86: trend 8.53 ma su CardTrader da 1.09: possibile carta sbagliata, esclusa
+ESCLUSA Pawniard 142/86: trend 8.53 ma su CardTrader da 1.08: possibile carta sbagliata, esclusa
 ESCLUSA Cinccino 153/86: trend 16.55 ma su CardTrader da 3.64: possibile carta sbagliata, esclusa
+ESCLUSA Clefairy-ex di Lylia 056/159: trend 2.35 ma su CardTrader da 0.32: possibile carta sbagliata, esclusa
 ESCLUSA Dunsparce 120/159: trend 2.33 ma su CardTrader da 0.19: possibile carta sbagliata, esclusa
 ESCLUSA Kilowattrel di Kissara 163/159: trend 3.16 ma su CardTrader da 0.43: possibile carta sbagliata, esclusa
 ESCLUSA Pikachu-ex 028/131: trend 2.95 ma su CardTrader da 0.14: possibile carta sbagliata, esclusa
