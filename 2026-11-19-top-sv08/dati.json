@@ -1,11 +1,11 @@
 {
  "data": "2026-11-19",
- "generato": "2026-11-19T07:36:11+00:00",
+ "generato": "2026-11-19T15:40:47+00:00",
  "formato": "top",
  "chiave": "sv08",
  "prova": false,
  "pagine": 3,
- "listino_cardtrader": "2026-11-18",
+ "listino_cardtrader": "2026-11-19",
  "voci": [
   {
    "id": "sv08-239",
@@ -46,7 +46,7 @@
    "picco": false,
    "coerente": true,
    "confermata": true,
-   "it_ct": 195.64,
+   "it_ct": 193.67,
    "img": "https://assets.tcgdex.net/it/sv/sv08/238/high.png"
   },
   {
@@ -109,7 +109,7 @@
    "picco": false,
    "coerente": true,
    "confermata": true,
-   "it_ct": 25.23,
+   "it_ct": 24.88,
    "img": "https://assets.tcgdex.net/it/sv/sv08/240/high.png"
   },
   {
